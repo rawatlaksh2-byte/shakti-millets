@@ -51,3 +51,17 @@ if(chatSend)chatSend.addEventListener('click',send);if(chatInput)chatInput.addEv
 
 const form=document.getElementById('quoteForm');
 if(form)form.addEventListener('submit',e=>{e.preventDefault();const d=new FormData(form);const text=`Hello Shakti Millets, I would like to request a B2B quote.%0A%0AName: ${d.get('name')}%0ACompany: ${d.get('company')}%0ACity: ${d.get('city')}%0AWhatsApp: ${d.get('whatsapp')}%0ABusiness Type: ${d.get('business')}%0AProducts Required: ${d.get('products')}%0AMonthly Requirement: ${d.get('monthly')}%0APack Requirement: ${d.get('pack')}%0AMessage: ${d.get('message')}`;window.open(`https://wa.me/919760015078?text=${text}`,'_blank')});
+
+/* ================= SHAKTI MILLETS OFFER POPUP ================= */
+(function(){
+  const popup=document.createElement('div');
+  popup.id='shaktiOfferPopup';
+  popup.innerHTML=`<div class="shakti-offer-backdrop"></div><div class="shakti-offer-modal" role="dialog" aria-modal="true" aria-labelledby="shaktiOfferTitle"><button class="shakti-offer-close" type="button" aria-label="Close offer">×</button><div class="shakti-offer-badge">SPECIAL COMBO OFFER</div><h2 id="shaktiOfferTitle">5 Little Millets Combo</h2><p class="shakti-offer-subtitle">A convenient combo of five little millet varieties from Shakti Millets.</p><div class="shakti-offer-products"><img src="images/products/04-kodo-millet-unpolished.png" alt="Kodo Millet"><img src="images/products/07-barnyard-millet-semipolished.png" alt="Barnyard Millet"><img src="images/products/09-little-millet-parboiled.png" alt="Little Millet"><img src="images/products/11-foxtail-millet.png" alt="Foxtail Millet"><img src="images/products/12-browntop-millet.png" alt="Browntop Millet"></div><div class="shakti-offer-price"><span>Published MRP</span><strong>₹745</strong></div><p class="shakti-offer-note">Want the current offer price or availability? Message us directly on WhatsApp.</p><a class="shakti-offer-cta" target="_blank" rel="noopener" href="https://wa.me/919760015078?text=Hello%20Shakti%20Millets%2C%20I%20am%20interested%20in%20the%205%20Little%20Millets%20Combo.%20Please%20share%20the%20current%20offer%20price%20and%20availability.">GET COMBO OFFER</a><button class="shakti-offer-later" type="button">Continue browsing</button></div>`;
+  document.body.appendChild(popup);
+  const close=()=>popup.classList.remove('is-visible');
+  popup.querySelector('.shakti-offer-close').addEventListener('click',close);
+  popup.querySelector('.shakti-offer-later').addEventListener('click',close);
+  popup.querySelector('.shakti-offer-backdrop').addEventListener('click',close);
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+  window.addEventListener('load',()=>setTimeout(()=>popup.classList.add('is-visible'),900));
+})();
