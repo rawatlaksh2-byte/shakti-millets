@@ -3,65 +3,617 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Shakti Millets - Premium millet and traditional rice supplier for homes, restaurants, retailers, food brands and distributors across India." />
-  <meta name="keywords" content="Millet Supplier in India, Bulk Millet Supplier, Wholesale Millet Supplier, Kodo Millet Supplier, Barnyard Millet Supplier, Foxtail Millet Supplier, Ragi Supplier, Traditional Rice Supplier" />
+
+  <meta
+    name="description"
+    content="Shakti Millets - Premium millet and traditional rice supplier for homes, restaurants, retailers, food brands and distributors across India."
+  />
+
+  <meta
+    name="keywords"
+    content="Millet Supplier in India, Bulk Millet Supplier, Wholesale Millet Supplier, Kodo Millet Supplier, Barnyard Millet Supplier, Foxtail Millet Supplier, Ragi Supplier, Traditional Rice Supplier"
+  />
+
   <title>Millet Supplier in India | Shakti Millets</title>
+
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Product display fix -->
+  <style>
+    /* Keep product image and product information clearly separated */
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .product-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      position: relative;
+      z-index: 1;
+    }
+
+    .product-card h3,
+    .product-card .product-name {
+      position: static !important;
+      left: auto !important;
+      right: auto !important;
+      top: auto !important;
+      bottom: auto !important;
+      transform: none !important;
+      margin: 16px 0 8px !important;
+      padding: 0 18px !important;
+      display: block !important;
+      clear: both;
+      z-index: 2;
+      background: transparent !important;
+      color: #163f2f !important;
+      text-shadow: none !important;
+      text-align: left;
+    }
+
+    .product-card p,
+    .product-card .product-info,
+    .product-card .product-details {
+      position: static !important;
+      padding-left: 18px !important;
+      padding-right: 18px !important;
+    }
+
+    .product-card .product-info {
+      padding-bottom: 18px !important;
+    }
+
+    /* Prevent text from appearing on top of product photos */
+    .product-card .overlay,
+    .product-card .product-overlay {
+      position: static !important;
+      background: transparent !important;
+    }
+
+    /* Make product image area clean */
+    .product-card .product-image,
+    .product-card .image-wrap,
+    .product-card .img-wrap {
+      position: relative;
+      width: 100%;
+      background: #f4f6ec;
+      overflow: hidden;
+    }
+
+    /* Mobile product layout */
+    @media (max-width: 600px) {
+      .product-card h3,
+      .product-card .product-name {
+        font-size: 22px !important;
+        line-height: 1.25 !important;
+        margin-top: 14px !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+      }
+
+      .product-card p,
+      .product-card .product-info,
+      .product-card .product-details {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+      }
+    }
+  </style>
 </head>
+
 <body>
+
 <header>
   <div class="container nav-wrap">
-    <a class="logo" href="#home">Shakti <span>Millets</span></a>
+
+    <a class="logo" href="#home">
+      Shakti <span>Millets</span>
+    </a>
+
     <nav>
-      <a href="#home">Home</a><a href="#products">Products</a><a href="#b2b">B2B Supply</a><a href="#why">Why Shakti</a><a href="#about">About Us</a><a href="#contact">Contact</a>
-      <a class="nav-cta" href="#quote">GET BULK QUOTE</a>
+      <a href="#home">Home</a>
+      <a href="#products">Products</a>
+      <a href="#b2b">B2B Supply</a>
+      <a href="#why">Why Shakti</a>
+      <a href="#about">About Us</a>
+      <a href="#contact">Contact</a>
+
+      <a class="nav-cta" href="#quote">
+        GET BULK QUOTE
+      </a>
     </nav>
+
   </div>
 </header>
 
+
 <main>
+
+<!-- ================= HERO ================= -->
+
 <section class="hero" id="home">
+
   <div class="container hero-grid">
+
     <div>
-      <div class="eyebrow">PREMIUM MILLETS • RETAIL + B2B</div>
-      <h1>Premium Millets.<br><span>Reliable Bulk Supply.</span></h1>
-      <p>Quality millets and traditional grains for homes, restaurants, retailers, food brands and distributors.</p>
-      <div class="hero-buttons"><a class="btn-primary" href="#products">VIEW PRODUCTS</a><a class="btn-secondary" href="#quote">GET B2B QUOTE</a><a class="btn-whatsapp" href="https://wa.me/919760015078?text=Hello%20Shakti%20Millets%2C%20I%20am%20interested%20in%20your%20products.%20Please%20share%20the%20catalogue%20and%20prices." target="_blank">WHATSAPP US</a></div>
+
+      <div class="eyebrow">
+        PREMIUM MILLETS • RETAIL + B2B
+      </div>
+
+      <h1>
+        Premium Millets.<br>
+        <span>Reliable Bulk Supply.</span>
+      </h1>
+
+      <p>
+        Quality millets and traditional grains for homes,
+        restaurants, retailers, food brands and distributors.
+      </p>
+
+      <div class="hero-buttons">
+
+        <a class="btn-primary" href="#products">
+          VIEW PRODUCTS
+        </a>
+
+        <a class="btn-secondary" href="#quote">
+          GET B2B QUOTE
+        </a>
+
+        <a
+          class="btn-whatsapp"
+          href="https://wa.me/919760015078?text=Hello%20Shakti%20Millets%2C%20I%20am%20interested%20in%20your%20products.%20Please%20share%20the%20catalogue%20and%20prices."
+          target="_blank"
+          rel="noopener"
+        >
+          WHATSAPP US
+        </a>
+
+      </div>
+
     </div>
-    <div class="hero-pack"><div class="pack-card">🌾<strong>SHAKTI<br>MILLETS</strong><span>Traditional grains • Quality focused</span></div></div>
+
+
+    <div class="hero-pack">
+
+      <div class="pack-card">
+        🌾
+
+        <strong>
+          SHAKTI<br>
+          MILLETS
+        </strong>
+
+        <span>
+          Traditional grains • Quality focused
+        </span>
+
+      </div>
+
+    </div>
+
   </div>
+
 </section>
 
-<section class="trust"><div class="container trust-grid"><span>🌾 Quality-Focused Sourcing</span><span>📦 Retail &amp; Bulk Packs</span><span>🚚 Pan-India Supply</span><span>🤝 B2B Enquiries Welcome</span></div></section>
 
-<section class="products" id="products"><div class="container">
-  <div class="section-title"><div class="eyebrow">OUR CATALOGUE</div><h2>Millets &amp; Traditional Grains</h2><p>Actual Shakti Millets products with published MRP and SKU.</p></div>
-  <div class="category-tabs"><button class="active" data-filter="all">ALL</button><button data-filter="little">LITTLE MILLETS</button><button data-filter="traditional">TRADITIONAL GRAINS</button><button data-filter="rice">RED RICE</button></div>
-  <div class="product-grid" id="productGrid"></div>
-</div></section>
+<!-- ================= TRUST ================= -->
 
-<section class="why" id="why"><div class="container"><div class="section-title"><div class="eyebrow">WHY SHAKTI</div><h2>Built for Retail &amp; Business</h2></div><div class="feature-grid">
-  <article><div>🌾</div><h3>Quality-Focused Sourcing</h3><p>Carefully selected grains for consistent quality.</p></article>
-  <article><div>📦</div><h3>Multiple Pack Sizes</h3><p>Suitable for household and business requirements.</p></article>
-  <article><div>🤝</div><h3>B2B Supply Support</h3><p>Bulk requirements for restaurants, retailers and distributors.</p></article>
-  <article><div>🌱</div><h3>Traditional Grains</h3><p>A wide selection of millets and traditional rice varieties.</p></article>
-  <article><div>🚚</div><h3>Reliable Dispatch</h3><p>Designed for repeat business requirements.</p></article>
-</div></div></section>
+<section class="trust">
 
-<section class="who" id="about"><div class="container"><div class="section-title"><div class="eyebrow">WHO WE SUPPLY</div><h2>For Businesses Across the Food Chain</h2></div><div class="who-grid"><span>🍽️ Restaurants</span><span>🏨 Hotels</span><span>☕ Cafés</span><span>☁️ Cloud Kitchens</span><span>🏪 Retail Stores</span><span>🛒 Supermarkets</span><span>🏭 Food Manufacturers</span><span>🚚 Distributors</span><span>🌍 Exporters</span></div></div></section>
+  <div class="container trust-grid">
 
-<section class="b2b" id="b2b"><div class="container"><div class="section-title light"><div class="eyebrow">B2B SUPPLY</div><h2>Bulk Millet Supply for Businesses</h2><p>Reliable millet sourcing for food businesses across India.</p></div><div class="b2b-grid"><article>🍽️<h3>Restaurants &amp; Cafés</h3></article><article>🏨<h3>Hotels</h3></article><article>☁️<h3>Cloud Kitchens</h3></article><article>🏪<h3>Retailers &amp; Supermarkets</h3></article><article>🏭<h3>Food Manufacturers</h3></article><article>🚚<h3>Distributors &amp; Wholesalers</h3></article></div><div class="center"><a class="btn-primary" href="#quote">GET BULK QUOTE</a></div></div></section>
+    <span>
+      🌾 Quality-Focused Sourcing
+    </span>
 
-<section class="how"><div class="container"><div class="section-title"><div class="eyebrow">SIMPLE PROCESS</div><h2>How B2B Ordering Works</h2></div><div class="steps"><article><b>1</b><h3>Tell Us Your Requirement</h3><p>Product + quantity + location.</p></article><article><b>2</b><h3>Get Your Quote</h3><p>Our team provides pricing and availability.</p></article><article><b>3</b><h3>Confirm Order</h3><p>Finalize quantity and delivery details.</p></article><article><b>4</b><h3>Dispatch</h3><p>Your order is packed and dispatched.</p></article></div></div></section>
+    <span>
+      📦 Retail &amp; Bulk Packs
+    </span>
 
-<section class="assistant"><div class="container"><div class="section-title light"><div class="eyebrow">SALES + PRODUCT ASSISTANT</div><h2>Ask Shakti AI</h2><p>Get product information or start a bulk enquiry.</p></div><div class="ai-chat"><div id="chatLog"><div class="msg msg-bot">👋 Hello! I can help with products, MRP, pack information and B2B enquiries.</div><div class="quick"><button data-q="Show me your available products.">Available products</button><button data-q="I need a bulk quotation.">Bulk quotation</button><button data-q="I want to become a distributor.">Distributor</button></div></div><div class="input-group"><input id="chatInput" placeholder="Ask about a product or bulk supply..."/><button id="chatSend">Send</button></div></div></div></section>
+    <span>
+      🚚 Pan-India Supply
+    </span>
 
-<section class="quote" id="quote"><div class="container quote-grid"><div><div class="eyebrow">B2B ENQUIRY</div><h2>Looking for bulk millet supply?</h2><p>Tell us what you need and our team will get back to you.</p><div class="quote-points"><span>✓ Product &amp; quantity based enquiry</span><span>✓ Business-focused support</span><span>✓ WhatsApp follow-up</span></div></div><form id="quoteForm"><input name="name" placeholder="Name *" required><input name="company" placeholder="Company Name"><input name="city" placeholder="City *" required><input name="whatsapp" placeholder="WhatsApp Number *" required><select name="business" required><option value="">Business Type *</option><option>Restaurant / Café</option><option>Hotel</option><option>Cloud Kitchen</option><option>Retailer / Supermarket</option><option>Food Manufacturer</option><option>Distributor / Wholesaler</option><option>Other</option></select><input name="products" placeholder="Products Required *" required><input name="monthly" placeholder="Approx. Monthly Requirement"><input name="pack" placeholder="Pack Requirement"><textarea name="message" rows="4" placeholder="Message"></textarea><button class="btn-primary" type="submit">REQUEST B2B QUOTE</button></form></div></section>
+    <span>
+      🤝 B2B Enquiries Welcome
+    </span>
 
-<section class="cta"><div class="container center"><div class="eyebrow">READY TO TALK?</div><h2>Need Millets in Bulk?</h2><p>Whether you're a restaurant, retailer, distributor or food manufacturer, talk to Shakti Millets about your requirement.</p><a class="btn-primary" href="#quote">REQUEST B2B QUOTE</a><a class="btn-whatsapp" href="https://wa.me/919760015078?text=Hello%20Shakti%20Millets%2C%20I%20am%20interested%20in%20bulk%20millet%20supply.%20Please%20contact%20me%20regarding%20B2B%20pricing." target="_blank">WHATSAPP US</a></div></section>
-</main>
+  </div>
 
-<footer id="contact"><div class="container footer-grid"><div><h3>🌾 Shakti Millets</h3><p>Premium millets and traditional grains for retail and B2B supply.</p></div><div><h4>Products</h4><a href="#products">Millets</a><a href="#products">Ragi</a><a href="#products">Sorghum</a><a href="#products">Traditional Rice</a></div><div><h4>Business</h4><a href="#quote">Bulk Orders</a><a href="#quote">Distributor Enquiry</a><a href="#quote">Retailer Enquiry</a><a href="#quote">Request Quote</a></div><div><h4>Contact</h4><a href="https://wa.me/919760015078" target="_blank">WhatsApp: 9760015078</a><a href="https://www.facebook.com/share/14KesAYWcAV/" target="_blank">Facebook</a><p>Pan-India enquiries welcome</p></div><div class="copyright">© 2026 Shakti Millets. All rights reserved.</div></div></footer>
-<a class="whatsapp-float" href="https://wa.me/919760015078?text=Hello%20Shakti%20Millets%2C%20I%20am%20interested%20in%20your%20products.%20Please%20share%20the%20catalogue%20and%20prices." target="_blank">💬</a>
-<script src="script.js"></script>
-</body></html>
+</section>
+
+
+<!-- ================= PRODUCTS ================= -->
+
+<section class="products" id="products">
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <div class="eyebrow">
+        OUR CATALOGUE
+      </div>
+
+      <h2>
+        Millets &amp; Traditional Grains
+      </h2>
+
+      <p>
+        Explore our Shakti Millets products with published
+        MRP, pack size and SKU information.
+      </p>
+
+    </div>
+
+
+    <!-- PRODUCT FILTERS -->
+
+    <div class="category-tabs">
+
+      <button
+        class="active"
+        data-filter="all"
+        type="button"
+      >
+        ALL
+      </button>
+
+      <button
+        data-filter="little"
+        type="button"
+      >
+        LITTLE MILLETS
+      </button>
+
+      <button
+        data-filter="traditional"
+        type="button"
+      >
+        TRADITIONAL GRAINS
+      </button>
+
+      <button
+        data-filter="rice"
+        type="button"
+      >
+        RED RICE
+      </button>
+
+    </div>
+
+
+    <!-- PRODUCTS ARE LOADED BY script.js -->
+
+    <div
+      class="product-grid"
+      id="productGrid"
+    ></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= WHY SHAKTI ================= -->
+
+<section class="why" id="why">
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <div class="eyebrow">
+        WHY SHAKTI
+      </div>
+
+      <h2>
+        Built for Retail &amp; Business
+      </h2>
+
+    </div>
+
+
+    <div class="feature-grid">
+
+      <article>
+        <div>🌾</div>
+
+        <h3>
+          Quality-Focused Sourcing
+        </h3>
+
+        <p>
+          Carefully selected grains for consistent quality.
+        </p>
+      </article>
+
+
+      <article>
+        <div>📦</div>
+
+        <h3>
+          Multiple Pack Sizes
+        </h3>
+
+        <p>
+          Suitable for household and business requirements.
+        </p>
+      </article>
+
+
+      <article>
+        <div>🤝</div>
+
+        <h3>
+          B2B Supply Support
+        </h3>
+
+        <p>
+          Bulk requirements for restaurants, retailers and distributors.
+        </p>
+      </article>
+
+
+      <article>
+        <div>🌱</div>
+
+        <h3>
+          Traditional Grains
+        </h3>
+
+        <p>
+          A wide selection of millets and traditional rice varieties.
+        </p>
+      </article>
+
+
+      <article>
+        <div>🚚</div>
+
+        <h3>
+          Reliable Dispatch
+        </h3>
+
+        <p>
+          Designed for repeat business requirements.
+        </p>
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= WHO WE SUPPLY ================= -->
+
+<section class="who" id="about">
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <div class="eyebrow">
+        WHO WE SUPPLY
+      </div>
+
+      <h2>
+        For Businesses Across the Food Chain
+      </h2>
+
+    </div>
+
+
+    <div class="who-grid">
+
+      <span>🍽️ Restaurants</span>
+      <span>🏨 Hotels</span>
+      <span>☕ Cafés</span>
+      <span>☁️ Cloud Kitchens</span>
+      <span>🏪 Retail Stores</span>
+      <span>🛒 Supermarkets</span>
+      <span>🏭 Food Manufacturers</span>
+      <span>🚚 Distributors</span>
+      <span>🌍 Exporters</span>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= B2B ================= -->
+
+<section class="b2b" id="b2b">
+
+  <div class="container">
+
+    <div class="section-title light">
+
+      <div class="eyebrow">
+        B2B SUPPLY
+      </div>
+
+      <h2>
+        Bulk Millet Supply for Businesses
+      </h2>
+
+      <p>
+        Reliable millet sourcing for food businesses across India.
+      </p>
+
+    </div>
+
+
+    <div class="b2b-grid">
+
+      <article>
+        🍽️
+        <h3>
+          Restaurants &amp; Cafés
+        </h3>
+      </article>
+
+      <article>
+        🏨
+        <h3>
+          Hotels
+        </h3>
+      </article>
+
+      <article>
+        ☁️
+        <h3>
+          Cloud Kitchens
+        </h3>
+      </article>
+
+      <article>
+        🏪
+        <h3>
+          Retailers &amp; Supermarkets
+        </h3>
+      </article>
+
+      <article>
+        🏭
+        <h3>
+          Food Manufacturers
+        </h3>
+      </article>
+
+      <article>
+        🚚
+        <h3>
+          Distributors &amp; Wholesalers
+        </h3>
+      </article>
+
+    </div>
+
+
+    <div class="center">
+
+      <a
+        class="btn-primary"
+        href="#quote"
+      >
+        GET BULK QUOTE
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= HOW IT WORKS ================= -->
+
+<section class="how">
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <div class="eyebrow">
+        SIMPLE PROCESS
+      </div>
+
+      <h2>
+        How B2B Ordering Works
+      </h2>
+
+    </div>
+
+
+    <div class="steps">
+
+      <article>
+
+        <b>1</b>
+
+        <h3>
+          Tell Us Your Requirement
+        </h3>
+
+        <p>
+          Product + quantity + location.
+        </p>
+
+      </article>
+
+
+      <article>
+
+        <b>2</b>
+
+        <h3>
+          Get Your Quote
+        </h3>
+
+        <p>
+          Our team provides pricing and availability.
+        </p>
+
+      </article>
+
+
+      <article>
+
+        <b>3</b>
+
+        <h3>
+          Confirm Order
+        </h3>
+
+        <p>
+          Finalize quantity and delivery details.
+        </p>
+
+      </article>
+
+
+      <article>
+
+        <b>4</b>
+
+        <h3>
+          Dispatch
+        </h3>
+
+        <p>
+          Your order is packed and dispatched.
+        </p>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= AI ASSISTANT ================= -->
+
+<section class="assistant">
+
+  <div class="container">
+
+    <div class="section-title light">
+
+      <div class="eyebrow">
+        SALES + PRODUCT ASSISTANT
+      </div>
+
+      <h
