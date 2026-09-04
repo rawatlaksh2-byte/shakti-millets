@@ -12,6 +12,50 @@
     log.scrollTop = log.scrollHeight;
   };
 
+  const addRecipe = recipe => {
+    const pageUrl = new URL('recipes.html?recipe=' + encodeURIComponent(recipe.slug), window.location.href).href;
+    const qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=' + encodeURIComponent(pageUrl);
+    const box = document.createElement('div');
+    box.className = 'msg msg-bot';
+    const title = document.createElement('strong');
+    title.textContent = '🍲 ' + recipe.name;
+    const product = document.createElement('div');
+    product.textContent = recipe.product + ' · ' + recipe.processing;
+    product.style.margin = '5px 0 10px';
+    const image = document.createElement('img');
+    image.src = recipe.image;
+    image.alt = recipe.name + ' prepared dish';
+    image.style.cssText = 'display:block;width:100%;max-width:280px;aspect-ratio:1;object-fit:cover;border-radius:14px;margin:8px 0';
+    const link = document.createElement('a');
+    link.href = pageUrl;
+    link.textContent = 'Open full recipe';
+    link.style.cssText = 'display:inline-block;background:#173b2b;color:#fff;text-decoration:none;padding:9px 14px;border-radius:20px;font-weight:800;margin:4px 8px 8px 0';
+    const qr = document.createElement('img');
+    qr.src = qrUrl;
+    qr.alt = 'QR code for ' + recipe.name;
+    qr.style.cssText = 'display:block;width:150px;height:150px;background:#fff;padding:5px;border-radius:10px';
+    const note = document.createElement('small');
+    note.textContent = 'Scan the QR on another device, or tap Open full recipe on this phone.';
+    note.style.cssText = 'display:block;margin-top:5px;color:#5e695f';
+    box.append(title, product, image, link, qr, note);
+    log.appendChild(box);
+    log.scrollTop = log.scrollHeight;
+  };
+
+  const findRecipe = raw => {
+    const recipes = window.SHAKTI_RECIPES || [];
+    const q = raw.toLowerCase().replace(/\b(recipe|recipes|how to make|how do i make|cook|prepare|please|give me|show me)\b/g, ' ').replace(/\s+/g, ' ').trim();
+    if (!q) return null;
+    let best = null, bestScore = 0;
+    recipes.forEach(recipe => {
+      const hay = (recipe.name + ' ' + recipe.product).toLowerCase();
+      const words = q.split(' ').filter(w => w.length > 2);
+      const score = words.reduce((sum, word) => sum + (hay.includes(word) ? word.length : 0), 0);
+      if (score > bestScore) { best = recipe; bestScore = score; }
+    });
+    return bestScore >= 4 ? best : null;
+  };
+
   const answer = raw => {
     const m = raw.toLowerCase().trim();
     if (/what (do|can) you have for me|what have you for me|what can you offer|what do you offer|tell me about shakti|about shakti|what is shakti millets|who is shakti millets/.test(m))
@@ -44,7 +88,9 @@
     button.disabled = true;
     button.textContent = '...';
     setTimeout(() => {
-      add(answer(text), 'msg-bot');
+      const recipe = /\b(recipe|cook|prepare|khichdi|pulao|dosa|roti|upma|pongal|porridge|ladoo|rasam|sundal|adai|tikki|curd rice|lemon rice|sambar)\b/i.test(text) && findRecipe(text);
+      if (recipe) addRecipe(recipe);
+      else add(answer(text), 'msg-bot');
       button.disabled = false;
       button.textContent = 'Send';
     }, 120);
