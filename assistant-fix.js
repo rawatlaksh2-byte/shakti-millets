@@ -3,6 +3,7 @@
   const oldButton = document.getElementById('chatSend');
   const log = document.getElementById('chatLog');
   if (!input || !oldButton || !log) return;
+  let lastTopic = '';
 
   const add = (text, cls) => {
     const d = document.createElement('div');
@@ -41,6 +42,57 @@
     log.appendChild(box);
     log.scrollTop = log.scrollHeight;
   };
+
+  const addRecipeChoices = (recipes, topic) => {
+    const box = document.createElement('div');
+    box.className = 'msg msg-bot';
+    const heading = document.createElement('strong');
+    heading.textContent = '🍲 Choose a ' + topic + ' recipe:';
+    const choices = document.createElement('div');
+    choices.style.cssText = 'display:flex;flex-wrap:wrap;gap:8px;margin-top:10px';
+    recipes.slice(0, 6).forEach(recipe => {
+      const choice = document.createElement('button');
+      choice.type = 'button';
+      choice.textContent = recipe.name;
+      choice.style.cssText = 'border:1px solid #b9cfaa;background:#fff;color:#173b2b;padding:9px 12px;border-radius:20px;font-weight:700;cursor:pointer';
+      choice.addEventListener('click', () => {
+        add(recipe.name, 'msg-user');
+        addRecipe(recipe);
+      });
+      choices.appendChild(choice);
+    });
+    box.append(heading, choices);
+    log.appendChild(box);
+    log.scrollTop = log.scrollHeight;
+  };
+
+  const detectTopic = raw => {
+    const m = raw.toLowerCase();
+    const aliases = [
+      ['ragi', /\b(ragi|finger millet)\b/],
+      ['kodo', /\bkodo\b/],
+      ['foxtail', /\bfoxtail\b/],
+      ['barnyard', /\bbarnyard\b/],
+      ['little millet', /\blittle millet\b/],
+      ['browntop', /\bbrowntop\b/],
+      ['proso', /\bproso\b/],
+      ['horsegram', /\b(horsegram|kollu)\b/],
+      ['pearl millet', /\b(pearl millet|kambu|bajra)\b/],
+      ['white sorghum', /\b(white sorghum|jowar)\b/],
+      ['red sorghum', /\b(red sorghum|red jowar)\b/],
+      ['kerala matta', /\b(kerala matta|red matta)\b/],
+      ['killankari', /\bkillankari\b/],
+      ['poongar', /\bpoongar\b/],
+      ['mappillaisamba', /\b(mappillaisamba|mappillai samba)\b/],
+      ['red rice', /\bred rice\b/],
+      ['palakkadan matta', /\bpalakkadan matta\b/]
+    ];
+    return aliases.find(([, pattern]) => pattern.test(m))?.[0] || '';
+  };
+
+  const recipesForTopic = topic => (window.SHAKTI_RECIPES || []).filter(recipe =>
+    (recipe.name + ' ' + recipe.product).toLowerCase().includes(topic)
+  );
 
   const findRecipe = raw => {
     const recipes = window.SHAKTI_RECIPES || [];
@@ -88,8 +140,14 @@
     button.disabled = true;
     button.textContent = '...';
     setTimeout(() => {
-      const recipe = /\b(recipe|cook|prepare|khichdi|pulao|dosa|roti|upma|pongal|porridge|ladoo|rasam|sundal|adai|tikki|curd rice|lemon rice|sambar)\b/i.test(text) && findRecipe(text);
+      const newTopic = detectTopic(text);
+      if (newTopic) lastTopic = newTopic;
+      const recipeIntent = /\b(recipe|recipes|cook|cooking|prepare|preparation|make|khichdi|pulao|dosa|roti|upma|pongal|porridge|ladoo|rasam|sundal|adai|tikki|curd rice|lemon rice|sambar)\b/i.test(text);
+      const dishNamed = /\b(khichdi|pulao|dosa|roti|upma|pongal|porridge|ladoo|rasam|sundal|adai|tikki|curd rice|lemon rice|sambar|dal|kanji|coconut rice|tomato rice|ghee rice)\b/i.test(text);
+      const recipe = recipeIntent && dishNamed ? findRecipe((lastTopic ? lastTopic + ' ' : '') + text) : null;
+      const choices = recipeIntent && lastTopic ? recipesForTopic(lastTopic) : [];
       if (recipe) addRecipe(recipe);
+      else if (choices.length) addRecipeChoices(choices, lastTopic);
       else add(answer(text), 'msg-bot');
       button.disabled = false;
       button.textContent = 'Send';
