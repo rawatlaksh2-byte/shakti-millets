@@ -1,9 +1,69 @@
 (() => {
+  const assistantSection = document.querySelector('section.assistant');
+  const chat = assistantSection && assistantSection.querySelector('.ai-chat');
+  if (assistantSection && chat) {
+    const popup = document.createElement('aside');
+    popup.id = 'shaktiAssistantPopup';
+    popup.className = 'shakti-assistant-popup';
+    popup.setAttribute('aria-label', 'Shakti AI customer assistant');
+    popup.setAttribute('aria-hidden', 'true');
+    popup.innerHTML = '<div class="shakti-model-panel"><img src="images/brand-ambassador-4.png" alt="Shakti Millets brand ambassador"><div class="shakti-model-shade"></div><div class="shakti-popup-tools"><button id="shaktiSpeak" type="button" aria-label="Start spoken assistance">🔊 Talk</button><button id="shaktiClose" type="button" aria-label="Close assistant">✕</button></div><div class="shakti-model-copy"><strong>Namaste! I’m Shakti AI.</strong><span>What are you looking for today?</span></div></div><div class="shakti-guide-actions"><button type="button" data-guide="Show me your available products.">🛍 Products</button><button type="button" data-guide="Show me millet recipes.">🍲 Recipes</button><button type="button" data-guide="Help me choose a millet for my needs.">🌾 Choose millet</button><button type="button" data-guide="I need a bulk quotation.">📦 Bulk order</button></div>';
+    popup.appendChild(chat);
+    document.body.appendChild(popup);
+
+    const launcher = document.createElement('button');
+    launcher.type = 'button';
+    launcher.className = 'shakti-assistant-launcher';
+    launcher.innerHTML = '🌾 Ask Shakti AI';
+    launcher.setAttribute('aria-label', 'Open Shakti AI');
+    document.body.appendChild(launcher);
+
+    const sectionOpen = document.createElement('button');
+    sectionOpen.type = 'button';
+    sectionOpen.className = 'shakti-section-open';
+    sectionOpen.textContent = 'TALK TO SHAKTI AI';
+    assistantSection.querySelector('.container')?.appendChild(sectionOpen);
+
+    const openPopup = () => {
+      popup.classList.add('is-open');
+      popup.setAttribute('aria-hidden', 'false');
+      launcher.classList.remove('is-visible');
+    };
+    const closePopup = () => {
+      popup.classList.remove('is-open');
+      popup.setAttribute('aria-hidden', 'true');
+      launcher.classList.add('is-visible');
+      window.speechSynthesis?.cancel();
+    };
+    popup.querySelector('#shaktiClose').addEventListener('click', closePopup);
+    launcher.addEventListener('click', openPopup);
+    sectionOpen.addEventListener('click', openPopup);
+    window.shaktiOpenAssistant = openPopup;
+    try {
+      if (!sessionStorage.getItem('shaktiAssistantWelcomed')) {
+        sessionStorage.setItem('shaktiAssistantWelcomed', '1');
+        setTimeout(openPopup, 900);
+      } else {
+        launcher.classList.add('is-visible');
+      }
+    } catch (_) { setTimeout(openPopup, 900); }
+  }
+
   const input = document.getElementById('chatInput');
   const oldButton = document.getElementById('chatSend');
   const log = document.getElementById('chatLog');
   if (!input || !oldButton || !log) return;
   let lastTopic = '';
+  let voiceEnabled = false;
+
+  const speak = text => {
+    if (!voiceEnabled || !('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(String(text).replace(/[🌾🍲👋]/g, ''));
+    utterance.lang = 'en-IN';
+    utterance.rate = .96;
+    window.speechSynthesis.speak(utterance);
+  };
 
   const add = (text, cls) => {
     const d = document.createElement('div');
@@ -11,6 +71,7 @@
     d.textContent = text;
     log.appendChild(d);
     log.scrollTop = log.scrollHeight;
+    if (cls === 'msg-bot') speak(text);
   };
 
   const addRecipe = recipe => {
@@ -41,6 +102,7 @@
     box.append(title, product, image, link, qr, note);
     log.appendChild(box);
     log.scrollTop = log.scrollHeight;
+    speak(recipe.name + '. I have shown the prepared dish, full recipe link and mobile QR code.');
   };
 
   const addRecipeChoices = (recipes, topic) => {
@@ -64,6 +126,7 @@
     box.append(heading, choices);
     log.appendChild(box);
     log.scrollTop = log.scrollHeight;
+    speak('Choose a ' + topic + ' recipe.');
   };
 
   const detectTopic = raw => {
@@ -167,5 +230,45 @@
       e.stopImmediatePropagation();
       send(q.getAttribute('data-q') || q.textContent);
     }, true);
+  });
+
+  document.querySelectorAll('[data-guide]').forEach(choice => {
+    choice.addEventListener('click', () => send(choice.getAttribute('data-guide')));
+  });
+
+  const inputGroup = input.closest('.input-group');
+  if (inputGroup) {
+    const mic = document.createElement('button');
+    mic.type = 'button';
+    mic.className = 'shakti-mic';
+    mic.textContent = '🎙️';
+    mic.setAttribute('aria-label', 'Speak your question');
+    inputGroup.insertBefore(mic, button);
+    const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!Recognition) {
+      mic.hidden = true;
+    } else {
+      const recognition = new Recognition();
+      recognition.lang = 'en-IN';
+      recognition.interimResults = false;
+      recognition.onstart = () => { mic.classList.add('is-listening'); mic.setAttribute('aria-label', 'Listening'); };
+      recognition.onend = () => { mic.classList.remove('is-listening'); mic.setAttribute('aria-label', 'Speak your question'); };
+      recognition.onerror = () => add('I could not hear that clearly. Please try the microphone again or type your question.', 'msg-bot');
+      recognition.onresult = event => {
+        const words = event.results[0][0].transcript;
+        input.value = words;
+        send(words);
+      };
+      mic.addEventListener('click', () => { voiceEnabled = true; recognition.start(); });
+    }
+  }
+
+  const speakButton = document.getElementById('shaktiSpeak');
+  if (speakButton) speakButton.addEventListener('click', () => {
+    voiceEnabled = !voiceEnabled;
+    speakButton.textContent = voiceEnabled ? '🔇 Mute' : '🔊 Talk';
+    speakButton.setAttribute('aria-label', voiceEnabled ? 'Mute spoken replies' : 'Start spoken assistance');
+    if (voiceEnabled) speak('Namaste. I am Shakti AI. What are you looking for today? You can ask about products, recipes, choosing a millet, or bulk orders.');
+    else window.speechSynthesis?.cancel();
   });
 })();
