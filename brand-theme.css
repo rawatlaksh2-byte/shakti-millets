@@ -1,0 +1,53 @@
+:root{--shakti-green:#103c27;--shakti-green-2:#1d5637;--shakti-cream:#f7ebd0;--shakti-ivory:#fff9ec;--shakti-gold:#c49a43;--shakti-brown:#4a2b18;--shakti-orange:#b9561d;--shakti-line:#ddc58f}
+body{background:var(--shakti-ivory);color:#29342d}
+header{background:rgba(255,249,236,.97);color:var(--shakti-green);border-bottom:2px solid var(--shakti-gold);box-shadow:0 7px 25px rgba(74,43,24,.13)}
+.logo,.brand{display:flex;align-items:center;text-decoration:none;flex:0 0 auto}
+.brand-logo-img{display:block;width:205px;height:62px;object-fit:contain;object-position:center;background:#fff;border-radius:10px;padding:4px 7px}
+nav a{color:var(--shakti-green)}
+nav a:not(.nav-cta)::after{background:var(--shakti-gold)}
+nav a:not(.nav-cta):hover{color:var(--shakti-orange);background:rgba(196,154,67,.1)}
+.nav-cta{background:var(--shakti-green);color:var(--shakti-ivory)!important;border:1px solid var(--shakti-gold)}
+.nav-cta:hover{background:var(--shakti-green-2)}
+.hero{background:radial-gradient(circle at 82% 20%,rgba(196,154,67,.28),transparent 27%),linear-gradient(125deg,#0b2e1e,var(--shakti-green-2) 66%,#654322);color:var(--shakti-ivory)}
+.hero .eyebrow,.light .eyebrow,.hero h1 span{color:#e7c56f}
+.hero p{color:#f9f0dc}
+.btn-primary{background:linear-gradient(135deg,#e3be63,var(--shakti-gold));color:var(--shakti-green);box-shadow:0 7px 18px rgba(55,36,14,.14)}
+.btn-secondary{border-color:#e7c56f;color:#fff4d7}
+.pack-card{width:310px;height:355px;background:#fff;border:2px solid var(--shakti-gold);padding:14px;transform:rotate(1deg);overflow:hidden}
+.pack-card img{width:100%;height:100%;object-fit:contain;display:block}
+.trust{background:var(--shakti-cream);border-bottom-color:var(--shakti-line)}
+.trust-grid{color:var(--shakti-green)}
+.products,.who,.how{background:var(--shakti-ivory)}
+.section-title h2,.quote h2,.cta h2{color:var(--shakti-green)}
+.eyebrow{color:var(--shakti-orange)}
+.category-tabs button,.quick button{border-color:var(--shakti-line);background:#fffdf7;color:var(--shakti-green)}
+.category-tabs button.active,.category-tabs button:hover{background:var(--shakti-green);color:#fff}
+.product-card,.feature-grid article,.who-grid span,.steps article,.recipe-card{background:#fffdf7;border-color:var(--shakti-line);box-shadow:0 9px 28px rgba(74,43,24,.08)}
+.product-image{background:linear-gradient(145deg,#fffdf7,var(--shakti-cream))}
+.product-card h3,.price,.feature-grid h3,.steps h3,.recipe-card h2,.detail-copy h1,.detail-copy h3{color:var(--shakti-green)}
+.why,.quote form,.cta{background:var(--shakti-cream)}
+.b2b,.assistant,.recipe-hero{background:radial-gradient(circle at 82% 5%,rgba(196,154,67,.22),transparent 28%),linear-gradient(135deg,#0b2e1e,var(--shakti-green-2))}
+.b2b-grid article{border-color:rgba(231,197,111,.35);background:rgba(255,249,236,.09)}
+.steps b,.input-group button,.quote-link,.recipe-card button,.open-link,.close{background:var(--shakti-green)}
+.steps b{color:#f0cd78}
+.quote{background:#fffdf7}
+footer{background:#0b2e1e;color:#e9dec6;border-top:3px solid var(--shakti-gold)}
+.footer-grid a,.back{color:#e7c56f}
+.footer-brand-logo{width:190px;height:115px;object-fit:contain;background:#fff;border-radius:12px;padding:5px;margin-bottom:10px}
+.shakti-assistant-popup{border:2px solid var(--shakti-gold);background:var(--shakti-ivory)}
+.shakti-model-panel,.shakti-assistant-launcher{background:var(--shakti-green)}
+.shakti-guide-actions{background:var(--shakti-cream);border-bottom-color:var(--shakti-line)}
+.shakti-guide-actions button{border-color:var(--shakti-line);color:var(--shakti-green);background:#fffdf7}
+.msg{background:#f5ecd7;color:var(--shakti-green)}
+.msg-user{background:#dfedcf}
+.shakti-section-open{background:var(--shakti-gold);color:var(--shakti-green)}
+.recipe-hero>p:first-child{color:#e7c56f}
+.recipes-wrap{background:var(--shakti-ivory)}
+.pill,#recipeCount{color:var(--shakti-orange)}
+.facts{background:var(--shakti-cream)}
+.tip{background:#f2ead6;border-left-color:var(--shakti-gold)}
+dialog{background:#fffdf7;border:1px solid var(--shakti-line)}
+dialog::backdrop{background:rgba(11,46,30,.78)}
+.detail-media{background:var(--shakti-cream)}
+@media(max-width:900px){.brand-logo-img{width:150px;height:56px}}
+@media(max-width:600px){.brand-logo-img{width:118px;height:48px}.nav-wrap{padding-top:8px;padding-bottom:8px}.nav-cta{background:var(--shakti-green)!important}.pack-card{width:270px;height:310px}.footer-brand-logo{width:170px}}
