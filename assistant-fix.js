@@ -56,12 +56,23 @@
   let lastTopic = '';
   let voiceEnabled = false;
 
+  const preferredVoice = lang => {
+    const voices = window.speechSynthesis?.getVoices() || [];
+    const wanted = lang === 'hi-IN' ? /^hi[-_]IN$/i : /^en[-_]IN$/i;
+    return voices.find(voice => wanted.test(voice.lang) && /female|neerja|swara|heera|kalpana|priya|raveena/i.test(voice.name))
+      || voices.find(voice => wanted.test(voice.lang))
+      || voices.find(voice => /^en[-_]IN$/i.test(voice.lang))
+      || null;
+  };
+
   const speak = text => {
     if (!voiceEnabled || !('speechSynthesis' in window)) return;
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(String(text).replace(/[🌾🍲👋]/g, ''));
-    utterance.lang = 'en-IN';
-    utterance.rate = .96;
+    utterance.lang = /[\u0900-\u097F]/.test(text) ? 'hi-IN' : 'en-IN';
+    utterance.voice = preferredVoice(utterance.lang);
+    utterance.rate = .93;
+    utterance.pitch = 1.04;
     window.speechSynthesis.speak(utterance);
   };
 
@@ -268,7 +279,7 @@
     voiceEnabled = !voiceEnabled;
     speakButton.textContent = voiceEnabled ? '🔇 Mute' : '🔊 Talk';
     speakButton.setAttribute('aria-label', voiceEnabled ? 'Mute spoken replies' : 'Start spoken assistance');
-    if (voiceEnabled) speak('Namaste. I am Shakti AI. What are you looking for today? You can ask about products, recipes, choosing a millet, or bulk orders.');
+    if (voiceEnabled) speak('नमस्ते! मैं शक्ति ए आई हूँ। आज आप क्या बनाना चाहेंगे? You can ask me about millet recipes, products, cooking guidance, or bulk orders.');
     else window.speechSynthesis?.cancel();
   });
 })();
