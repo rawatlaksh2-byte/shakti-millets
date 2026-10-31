@@ -1,4 +1,4 @@
-:root{--shakti-green:#103c27;--shakti-green-2:#1d5637;--shakti-cream:#f7ebd0;--shakti-ivory:#fff9ec;--shakti-gold:#c49a43;--shakti-brown:#4a2b18;--shakti-orange:#b9561d;--shakti-line:#ddc58f}
+:root{--shakti-green:#2e5e3a;--shakti-green-2:#244d32;--shakti-cream:#faf6ec;--shakti-ivory:#faf6ec;--shakti-gold:#c9a227;--shakti-brown:#754c32;--shakti-orange:#b9561d;--shakti-line:#ddc58f}
 body{background:var(--shakti-ivory);color:#29342d}
 header{background:rgba(255,249,236,.97);color:var(--shakti-green);border-bottom:2px solid var(--shakti-gold);box-shadow:0 7px 25px rgba(74,43,24,.13)}
 .logo,.brand{display:flex;align-items:center;text-decoration:none;flex:0 0 auto}
