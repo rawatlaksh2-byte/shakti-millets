@@ -47,7 +47,7 @@ const productStories={
 };
 function card(p){
  const visual=p.comboImage ? '<div class="combo-product-image">'+comboImages.map(src=>'<img src="'+src+'" alt="Five little millet varieties" loading="lazy">').join('')+'</div>' : '<img src="'+p.image+'" alt="'+p.name+'" loading="lazy" onerror="this.style.display=\'none\';this.parentElement.innerHTML=\'🌾\'">';
- const process=p.processing ? p.processing.replace('Semipolished','Semi-polished') : 'Traditional grain';
+ const process='A traditional favourite';
  const story=productStories[p.name] || 'A traditional grain to explore in everyday home cooking.';
  return '<article class="product-card"><div class="product-image">'+visual+'</div><div class="product-card-body"><span class="tag">'+process+'</span><h3>'+p.name+'</h3><p class="product-story">'+story+'</p><div class="product-meta"><span>Pack</span><b>'+p.size+'</b></div><div class="price">₹'+p.mrp+'</div><details class="product-details"><summary>Know your grain</summary><div><p><b>Grain:</b> '+p.name+'</p><p><b>Processing:</b> '+(p.processing||'Please enquire for details')+'</p><p><b>Pack size:</b> '+p.size+'</p><p><b>Published price:</b> ₹'+p.mrp+'</p></div></details><div class="product-actions"><a class="order" target="_blank" rel="noopener" href="https://wa.me/919760015078?text='+encodeURIComponent(waText(p))+'">ASK ON WHATSAPP</a><a class="quote-link" href="#quote">BULK ENQUIRY</a></div></div></article>';
 }
